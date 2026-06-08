@@ -11,4 +11,7 @@
   <ItemGroup>
     <None Include=".circleci\config.yml" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NewFolder\" />
+  </ItemGroup>
 </Project>
