@@ -9,12 +9,23 @@ jobs:
       - checkout
 
       - run:
+          name: Show repository structure
+          command: |
+            pwd
+            ls -la
+            ls -la apds_project
+
+      - run:
           name: Install dependencies
-          command: npm install
+          command: |
+            cd apds_project
+            npm install
 
       - run:
           name: Build app
-          command: npm run build
+          command: |
+            cd apds_project
+            npm run build
 
       - run:
           name: Install Sonar Scanner
@@ -24,11 +35,13 @@ jobs:
       - run:
           name: Run SonarCloud Scan
           command: |
+            cd apds_project
             sonar-scanner \
               -Dsonar.projectKey=Avuyile-Plaatjie_SonarQubeDemo \
               -Dsonar.organization=avuyile-plaatjie \
               -Dsonar.host.url=https://sonarcloud.io \
-              -Dsonar.token=$SONAR_TOKEN
+              -Dsonar.token=$SONAR_TOKEN \
+              -Dsonar.sources=src
 
 workflows:
   version: 2
