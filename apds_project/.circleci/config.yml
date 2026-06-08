@@ -10,20 +10,24 @@ jobs:
 
       - run:
           name: Install dependencies
-          command: npm install
+          command: |
+            cd apds_project
+            npm install
 
       - run:
           name: Build app
-          command: npm run build
+          command: |
+            cd apds_project
+            npm run build
 
       - run:
           name: Install Sonar Scanner
-          command: |
-            npm install -g sonarqube-scanner
+          command: npm install -g sonarqube-scanner
 
       - run:
           name: Run SonarCloud Scan
           command: |
+            cd apds_project
             sonar-scanner \
               -Dsonar.projectKey=Avuyile-Plaatjie_SonarQubeDemo \
               -Dsonar.organization=avuyile-plaatjie \
